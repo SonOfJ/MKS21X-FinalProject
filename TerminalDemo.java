@@ -99,8 +99,6 @@ public class TerminalDemo {
 					y++;
 					x++;
 				}
-				putString(1,4,terminal,"["+key.getCharacter() +"]");
-				putString(1,1,terminal,key+"        ");//to clear leftover letters pad withspaces
 			}
 
 
