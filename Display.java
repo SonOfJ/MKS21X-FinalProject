@@ -8,5 +8,11 @@ public class Display {
     name = newName;
     height = newHeight;
     width = newWidth;
+    create();
+  }
+  private void create() { //Makes the actual display.
+    frame = new JFrame(name);
+    frame.setSize(width, height);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Shuts down game when terminal closes.
   }
 }
