@@ -14,5 +14,6 @@ public class Display {
     frame = new JFrame(name);
     frame.setSize(width, height);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Shuts down game when terminal closes.
+    frame.setResizable(false); //No reason for the user to resize the window.
   }
 }
