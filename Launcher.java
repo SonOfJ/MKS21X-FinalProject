@@ -43,6 +43,8 @@ public class World {
 			System.exit(0);
 		}
 		Map map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
+		putString(0, 0, terminal, map.print()); //Prints the map.
+		boolean living = true; //Alive at the start of the game.
 
 
 		int x = 0;
