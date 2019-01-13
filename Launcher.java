@@ -25,7 +25,10 @@ public class World {
 		}
 	}
 	public static void main(String[] args) {
-
+		if (args.length != 1 || ) {
+			System.out.println("Provide only an integer seed to generate a map.")
+			System.exit(0);
+		}
 
 		int x = 0;
 		int y = 0;
