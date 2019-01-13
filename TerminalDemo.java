@@ -93,13 +93,6 @@ public class TerminalDemo {
 					terminal.putCharacter(' ');
 					y++;
 				}
-				//space moves it diagonally
-				if (key.getCharacter() == ' ') {
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
-					y++;
-					x++;
-				}
 			}
 
 
