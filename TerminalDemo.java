@@ -70,25 +70,25 @@ public class TerminalDemo {
 					running = false;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) {
+				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) { //Left boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					x--;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowRight && x != 79) {
+				if (key.getKind() == Key.Kind.ArrowRight && x != 79) { //Right boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					x++;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowUp && y != 0) {
+				if (key.getKind() == Key.Kind.ArrowUp && y != 0) { //Upper boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					y--;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowDown && y != 23) {
+				if (key.getKind() == Key.Kind.ArrowDown && y != 23) { //Lower boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					y++;
