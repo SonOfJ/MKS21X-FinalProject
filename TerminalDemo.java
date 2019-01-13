@@ -76,7 +76,7 @@ public class TerminalDemo {
 					x--;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowRight) {
+				if (key.getKind() == Key.Kind.ArrowRight && x != 79) {
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					x++;
