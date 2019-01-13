@@ -27,8 +27,8 @@ public class TerminalDemo {
 	public static void main(String[] args) {
 
 
-		int x = 10;
-		int y = 10;
+		int x = 0;
+		int y = 0;
 
 		Terminal terminal = TerminalFacade.createTextTerminal();
 		terminal.enterPrivateMode();
