@@ -25,10 +25,24 @@ public class World {
 		}
 	}
 	public static void main(String[] args) {
-		if (args.length != 1 || ) {
-			System.out.println("Provide only an integer seed to generate a map.")
+		if (args.length != 1) { //Only one argument is needed.
+			System.out.println("Provide only an appropriate map number to generate a map.");
+			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
+		try {
+			Integer.parseInt(args[0]); //Is the input an integer?
+		} catch (NumberFormatException e) {
+			System.out.println("Provide only an appropriate map number to generate a map.");
+			System.out.println("Map numbers: ");
+			System.exit(0);
+		}
+		if (Integer.parseInt(args[0]) < 1) { //Correct map number?
+			System.out.println("Invalid map number.");
+			System.out.println("Map numbers: ");
+			System.exit(0);
+		}
+
 
 		int x = 0;
 		int y = 0;
