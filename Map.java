@@ -15,6 +15,13 @@ public class Map {
   private int seed;
   public Map(int newSeed) {
     seed = newSeed;
-    
+
+  }
+
+  public String print(){
+    if (seed == 1){
+      return "World 1";
+    }
+    return "Testing";
   }
 }

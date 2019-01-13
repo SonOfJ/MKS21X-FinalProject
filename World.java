@@ -43,13 +43,13 @@ public class World {
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
 
-		putString(0, 0, terminal, map.print()); //Prints the map.
 		boolean living = true; //Alive at the start of the game.
 		int x = 0;
 		int y = 0;
 
 		boolean running = true;
 		while(running){
+			putString(0, 0, terminal, map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.BLACK);
@@ -90,8 +90,8 @@ public class World {
 					y--;
 				}
 				if (key.getKind() == Key.Kind.ArrowDown && y != 23) { //Lower boundaries.
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
+					//terminal.moveCursor(x,y);
+					//terminal.putCharacter(' ');
 					y++;
 				}
 			}
