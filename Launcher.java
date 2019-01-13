@@ -72,11 +72,7 @@ public class World {
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 			if (!alive) { //The player is dead
 				putString(0, 0, terminal, "GAME OVER. Press z to exit."); //Display text and directions to exit game.
-				while (!alive) {
-					if (terminal.readInput() == 'z') {
-						running = false; //No longer running
-					}
-				}
+				running = false;
 			}
 
 			terminal.moveCursor(size.getColumns()-5,5);
@@ -120,10 +116,6 @@ public class World {
 					y++;
 				}
 			}
-
-
-
-
 		}
 	}
 }
