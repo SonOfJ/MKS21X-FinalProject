@@ -12,5 +12,9 @@ import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 public class Map {
-  private Player player;
+  private int seed;
+  public Map(int newSeed) {
+    seed = newSeed;
+    
+  }
 }
