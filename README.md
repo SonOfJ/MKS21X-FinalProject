@@ -10,5 +10,5 @@ Eliza: Research and familiarize the coding for 2D game: https://www.youtube.com/
 1/9/19
 Jason: Did some failed experiments with JFrames.
 1/12/19
-Jason: Finalized the boundaries.
+Jason: Finalized the boundaries. Added code to test argument inputs.
  
