@@ -82,7 +82,7 @@ public class TerminalDemo {
 					x++;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowUp) {
+				if (key.getKind() == Key.Kind.ArrowUp && != 0) {
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					y--;
