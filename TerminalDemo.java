@@ -38,6 +38,8 @@ public class TerminalDemo {
 
 		boolean running = true;
 
+		long tStart = System.currentTimeMillis();
+		long lastSecond = 0;
 
 		while(running){
 
@@ -102,6 +104,16 @@ public class TerminalDemo {
 				}
 			}
 
+			//DO EVEN WHEN NO KEY PRESSED:
+			long tEnd = System.currentTimeMillis();
+			long millis = tEnd - tStart;
+			putString(1,2,terminal,"Milliseconds since start of program: "+millis);
+			if(millis/1000 > lastSecond){
+				lastSecond = millis / 1000;
+				//one second has passed.
+				putString(1,3,terminal,"Seconds since start of program: "+lastSecond);
+
+			}
 
 
 		}
