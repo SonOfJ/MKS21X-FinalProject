@@ -70,7 +70,7 @@ public class TerminalDemo {
 					running = false;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowLeft) {
+				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) {
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					x--;
