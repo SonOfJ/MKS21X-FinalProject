@@ -38,6 +38,8 @@ public class TerminalDemo {
 
 		boolean running = true;
 
+		long tStart = System.currentTimeMillis();
+		long lastSecond = 0;
 
 		while(running){
 
@@ -54,8 +56,18 @@ public class TerminalDemo {
 
 
 			terminal.moveCursor(size.getColumns()-5,5);
+			terminal.applyBackgroundColor(Terminal.Color.RED);
+			terminal.applyForegroundColor(Terminal.Color.YELLOW);
 			terminal.applySGR(Terminal.SGR.ENTER_BOLD);
+			terminal.putCharacter(' ');
+			terminal.putCharacter(' ');
+			terminal.putCharacter('\u262d');
+			terminal.putCharacter(' ');
 			terminal.moveCursor(size.getColumns()-5,6);
+			terminal.putCharacter(' ');
+			terminal.putCharacter(' ');
+			terminal.putCharacter(' ');
+			terminal.putCharacter(' ');
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 
@@ -104,6 +116,14 @@ public class TerminalDemo {
 				putString(1,1,terminal,key+"        ");//to clear leftover letters pad withspaces
 			}
 
+			//DO EVEN WHEN NO KEY PRESSED:
+			long tEnd = System.currentTimeMillis();
+			long millis = tEnd - tStart;
+			putString(1,2,terminal,"Milliseconds since start of program: "+millis);
+			if(millis/1000 > lastSecond){
+				lastSecond = millis / 1000;
+				//one second has passed.
+				putString(1,3,terminal,"Seconds since start of program: "+lastSecond);
 
 			}
 
