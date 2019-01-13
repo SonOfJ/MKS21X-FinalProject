@@ -88,7 +88,7 @@ public class TerminalDemo {
 					y--;
 				}
 
-				if (key.getKind() == Key.Kind.ArrowDown) {
+				if (key.getKind() == Key.Kind.ArrowDown && y != 23) {
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					y++;
