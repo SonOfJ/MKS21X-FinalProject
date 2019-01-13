@@ -62,7 +62,6 @@ public class World {
 		while(running){
 
 			terminal.moveCursor(x,y);
-			terminal.applyBackgroundColor(Terminal.Color.WHITE);
 			terminal.applyForegroundColor(Terminal.Color.BLACK);
 			//applySGR(a,b) for multiple modifiers (bold,blink) etc.
 			terminal.applySGR(Terminal.SGR.ENTER_UNDERLINE);
@@ -71,7 +70,14 @@ public class World {
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
-
+			if (!alive) { //The player is dead
+				putString(0, 0, terminal, "GAME OVER. Press z to exit."); //Display text and directions to exit game.
+				while (!alive) {
+					if (terminal.readInput() == 'z') {
+						running = false; //No longer running
+					}
+				}
+			}
 
 			terminal.moveCursor(size.getColumns()-5,5);
 			terminal.applySGR(Terminal.SGR.ENTER_BOLD);
