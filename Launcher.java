@@ -42,6 +42,7 @@ public class World {
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
+		Map map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
 
 
 		int x = 0;
