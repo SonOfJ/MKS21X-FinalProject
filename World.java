@@ -51,7 +51,7 @@ public class World {
 
 		boolean running = true;
 		while(running){
-			putString(0, 0, terminal, map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
+			putString(0, 0, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.BLACK);
@@ -84,7 +84,7 @@ public class World {
 					terminal.putCharacter(' ');
 					x--;
 				}
-				if (key.getKind() == Key.Kind.ArrowRight && x != 79) { //Right boundaries.
+				if (key.getKind() == Key.Kind.ArrowRight && x != 49) { //Right boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					x++;
@@ -94,7 +94,7 @@ public class World {
 					terminal.putCharacter(' ');
 					y--;
 				}
-				if (key.getKind() == Key.Kind.ArrowDown && y != 23) { //Lower boundaries.
+				if (key.getKind() == Key.Kind.ArrowDown && y != 49) { //Lower boundaries.
 					terminal.moveCursor(x,y);
 					terminal.putCharacter(' ');
 					y++;
