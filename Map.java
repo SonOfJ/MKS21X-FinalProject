@@ -19,6 +19,8 @@ public class Map {
   public Map(int newSeed) {
     seed = newSeed;
     tile = new Character[50][50];
+    row = new String[50];
+    if (seed == 1){
     row[0] = "##################################################";
     row[1] = "#   #            #      #                        #";
     row[2] = "#                #      #                        #";
@@ -75,6 +77,7 @@ public class Map {
       }
     }
   }
+}
 
   public String getRow(int rowNum) {
     return row[rowNum];
