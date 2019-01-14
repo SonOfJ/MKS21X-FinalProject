@@ -24,3 +24,14 @@ https://github.com/mgiaramita/Lantern-Adventures
 Jason: Finalized the boundaries. Added code to test argument inputs. Changed names of some of the classes, finished up with launcher class, and started work on maps.
 1/13/19
 Jason & Eliza: Finalized map and print function. Created working walls as well.
+
+
+
+
+
+
+THOUGHTS:
+1. create map files to read from
+2. remind user to change terminal size
+3. create monster on tile
+4. battle screen change
