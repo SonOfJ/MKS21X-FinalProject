@@ -1,4 +1,6 @@
 # MKS21X-FinalProject
+INSTRUCTIONS: Move around with the arrow keys.
+
 1/4/19
 Jason: Had to experiment with PuTTY because GitBASH for window does not support special characters. Downloaded PuTTY and learned how to SSH to the school server. Uploaded lanterna.jar and TerminalDemo.java to GitHub.
 1/6/19
@@ -17,3 +19,5 @@ Eliza: Research other rogue-like game using lanterna:
 https://github.com/mgiaramita/Lantern-Adventures
 1/12/19
 Jason: Finalized the boundaries. Added code to test argument inputs. Changed names of some of the classes, finished up with launcher class, and started work on maps.
+1/13/19
+Jason & Eliza: Finalized map and print function. Created working walls as well.
