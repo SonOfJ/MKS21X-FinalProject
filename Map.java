@@ -14,14 +14,11 @@ import com.googlecode.lanterna.input.KeyMappingProfile;
 public class Map {
   private int seed;
   private Character tile[][];
-<<<<<<< HEAD
+  private String row[];
+
   public Map(int newSeed) {
     seed = newSeed;
     tile = new Character[50][50];
-=======
-  private String row[];
-  public Map(int newSeed) {
-    seed = newSeed;
     row[0] = "##################################################";
     row[1] = "#   #            #      #                        #";
     row[2] = "#                #      #                        #";
@@ -78,7 +75,6 @@ public class Map {
       }
     }
   }
->>>>>>> 5fad3f2ea1203a19e6bb72dbd4f65de3dd91e01e
 
   public String getRow(int rowNum) {
     return row[rowNum];

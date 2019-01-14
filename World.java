@@ -41,8 +41,6 @@ public class World {
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
-		int maxX = size.getRows();
-		int maxY = size.getColumns();
 		terminal.setCursorVisible(false);
 
 		boolean living = true; //Alive at the start of the game.
@@ -52,6 +50,11 @@ public class World {
 		boolean running = true;
 		while(running){
 			putString(0, 0, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
+
+			for (int i=0; i < 50; i++){
+				putString(0, i, terminal, Map.getRow(i));
+			}
+
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.BLACK);
@@ -80,24 +83,48 @@ public class World {
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) { //Left boundaries.
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
-					x--;
+					if (isWall(x-1,y) || x-1<0){
+						putString(0, 53, terminal, "Invalid Action");
+					}
+					else{
+						terminal.moveCursor(x,y);
+						terminal.putCharacter(' ');
+						x--;
+						putString(0, 53, terminal, key + " ");
+					}
 				}
 				if (key.getKind() == Key.Kind.ArrowRight && x != 49) { //Right boundaries.
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
-					x++;
+					if (isWall(x+1,y) || x+1>49){
+						putString(0, 53, terminal, "Invalid Action");
+					}
+					else{
+						terminal.moveCursor(x,y);
+						terminal.putCharacter(' ');
+						x++;
+						putString(0, 53, terminal, key + " ");
+					}
 				}
 				if (key.getKind() == Key.Kind.ArrowUp && y != 0) { //Upper boundaries.
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
-					y--;
+					if (isWall(x,y-1) || y-1<0){
+						putString(0, 53, terminal, "Invalid Action");
+					}
+					else{
+						terminal.moveCursor(x,y);
+						terminal.putCharacter(' ');
+						y--;
+						putString(0, 53, terminal, key + " ");
+					}
 				}
 				if (key.getKind() == Key.Kind.ArrowDown && y != 49) { //Lower boundaries.
-					terminal.moveCursor(x,y);
-					terminal.putCharacter(' ');
-					y++;
+					if (isWall(x,y+1) || y+1>49){
+						putString(0, 53, terminal, "Invalid Action");
+					}
+					else{
+						terminal.moveCursor(x,y);
+						terminal.putCharacter(' ');
+						y++;
+						putString(0, 53, terminal, key + " ");
+					}
 				}
 			}
 		}
