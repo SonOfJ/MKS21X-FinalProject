@@ -83,7 +83,7 @@ public class World {
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) { //Left boundaries.
-					if (isWall(x-1,y) || x-1<0){
+					if (Map.isWall(x-1,y) || x-1<0){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -94,7 +94,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowRight && x != 49) { //Right boundaries.
-					if (isWall(x+1,y) || x+1>49){
+					if (Map.isWall(x+1,y) || x+1>49){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -105,7 +105,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowUp && y != 0) { //Upper boundaries.
-					if (isWall(x,y-1) || y-1<0){
+					if (Map.isWall(x,y-1) || y-1<0){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -116,7 +116,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowDown && y != 49) { //Lower boundaries.
-					if (isWall(x,y+1) || y+1>49){
+					if (Map.isWall(x,y+1) || y+1>49){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
