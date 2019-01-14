@@ -41,6 +41,8 @@ public class World {
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
+		int maxX = size.getRows();
+		int maxY = size.getColumns();
 		terminal.setCursorVisible(false);
 
 		boolean living = true; //Alive at the start of the game.
@@ -90,8 +92,8 @@ public class World {
 					y--;
 				}
 				if (key.getKind() == Key.Kind.ArrowDown && y != 23) { //Lower boundaries.
-					//terminal.moveCursor(x,y);
-					//terminal.putCharacter(' ');
+					terminal.moveCursor(x,y);
+					terminal.putCharacter(' ');
 					y++;
 				}
 			}

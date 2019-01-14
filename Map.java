@@ -13,6 +13,7 @@ import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 public class Map {
   private int seed;
+  private Character tile[][];
   public Map(int newSeed) {
     seed = newSeed;
 
@@ -20,6 +21,7 @@ public class Map {
 
   public String print(){
     if (seed == 1){
+      tile = new Character[100][100];
       return "World 1";
     }
     return "Testing";
