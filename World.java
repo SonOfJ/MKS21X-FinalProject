@@ -36,7 +36,7 @@ public class World {
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
-		Map map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
+		Map Map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
 
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		terminal.enterPrivateMode();
