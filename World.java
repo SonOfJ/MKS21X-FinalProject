@@ -51,7 +51,7 @@ public class World {
 
 		boolean running = true;
 		while(running){
-			putString(0, 0, terminal, map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
+			putString(0, 0, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.BLACK);
