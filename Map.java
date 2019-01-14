@@ -13,7 +13,7 @@ import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 public class Map {
   private int seed;
-  private Character tile[][];
+  private String tile[][];
   public Map(int newSeed) {
     seed = newSeed;
 
@@ -21,9 +21,11 @@ public class Map {
 
   public String print(){
     if (seed == 1){
-      tile = new Character[100][100];
-      return "World 1";
+      tile = new String[50][50];
+      return "World 1 : 50x50 size";
     }
-    return "Testing";
+    return "NOT OPEN. ONLY ONE MAP CURRENTLY";
   }
+
+  
 }
