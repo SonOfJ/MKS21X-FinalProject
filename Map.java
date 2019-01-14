@@ -90,8 +90,8 @@ public class Map {
     return "NOT OPEN. ONLY ONE MAP CURRENTLY";
   }
 
-  public boolean isWall(int x, int y){
+  public boolean isWall(int y, int x){
     //check is tile is a wall
-    return tile[x][y] != null;
+    return tile[y][x] != ' ';
   }
 }

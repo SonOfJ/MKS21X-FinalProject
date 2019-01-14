@@ -57,7 +57,8 @@ public class World {
 
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
-			terminal.applyForegroundColor(Terminal.Color.BLACK);
+			terminal.applyForegroundColor(Terminal.Color.YELLOW);
+			terminal.applyBackgroundColor(Terminal.Color.BLACK);
 			//applySGR(a,b) for multiple modifiers (bold,blink) etc.
 			terminal.applySGR(Terminal.SGR.ENTER_UNDERLINE);
 			terminal.putCharacter('\u00a4');
@@ -83,7 +84,7 @@ public class World {
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) { //Left boundaries.
-					if (Map.isWall(x-1,y) || x-1<0){
+					if (Map.isWall(y,x-1) || x-1<0){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -94,7 +95,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowRight && x != 49) { //Right boundaries.
-					if (Map.isWall(x+1,y) || x+1>49){
+					if (Map.isWall(y,x+1) || x+1>49){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -105,7 +106,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowUp && y != 0) { //Upper boundaries.
-					if (Map.isWall(x,y-1) || y-1<0){
+					if (Map.isWall(y-1,x) || y-1<0){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -116,7 +117,7 @@ public class World {
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowDown && y != 49) { //Lower boundaries.
-					if (Map.isWall(x,y+1) || y+1>49){
+					if (Map.isWall(y+1,x) || y+1>49){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
