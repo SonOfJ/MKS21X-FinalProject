@@ -44,12 +44,12 @@ public class World {
 		terminal.setCursorVisible(false);
 
 		boolean living = true; //Alive at the start of the game.
-		int x = 0;
-		int y = 0;
+		int x = 1;
+		int y = 1;
 
 		boolean running = true;
 		while(running){
-			putString(0, 0, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
+			putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 
 			for (int i=0; i < 50; i++){
 				putString(0, i, terminal, Map.getRow(i));
