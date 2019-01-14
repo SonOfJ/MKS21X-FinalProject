@@ -20,14 +20,14 @@ public class World {
 	}
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
-			System.out.println("Provide only an appropriate map number to generate a map.");
+			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
 		try {
 			Integer.parseInt(args[0]); //Is the input an integer?
 		} catch (NumberFormatException e) {
-			System.out.println("Provide only an appropriate map number to generate a map.");
+			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
@@ -73,6 +73,9 @@ public class World {
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			if (key != null) {
 				if (key.getKind() == Key.Kind.Escape) {
+					//every if here add: 1. see if the next movement run into a wall
+					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
+					//3. if it is wall, putString at (0,1) about "invalid action"
 					terminal.exitPrivateMode();
 					running = false;
 				}
