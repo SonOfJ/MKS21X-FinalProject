@@ -31,8 +31,8 @@ public class World {
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
-		if (Integer.parseInt(args[0]) < 1) { //Correct map number?
-			System.out.println("Invalid map number.");
+		if (Integer.parseInt(args[0]) != 1) { //Correct map number?
+			System.out.println("Invalid map number. Current # of map: 1");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
