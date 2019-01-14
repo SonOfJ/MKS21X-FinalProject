@@ -1,5 +1,8 @@
 # MKS21X-FinalProject
 INSTRUCTIONS: Move around with the arrow keys.
+Compile: javac -cp lanterna.jar:. World.java
+Run: java -cp lanterna.jar:. World (World #)
+NOTE: The only available world at the moment is World 1.
 
 1/4/19
 Jason: Had to experiment with PuTTY because GitBASH for window does not support special characters. Downloaded PuTTY and learned how to SSH to the school server. Uploaded lanterna.jar and TerminalDemo.java to GitHub.
