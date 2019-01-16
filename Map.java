@@ -11,6 +11,8 @@ import com.googlecode.lanterna.input.InputDecoder;
 import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
+import java.util.*;
+import java.io.*;
 public class Map {
   private int seed;
   private Character tile[][];
@@ -20,6 +22,7 @@ public class Map {
     seed = newSeed;
     tile = new Character[50][50];
     row = new String[50];
+    Scanner reader = new
     if (seed == 1){
     row[0] = "##################################################";
     row[1] = "#   #            #      #                        #";
