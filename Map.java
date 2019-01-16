@@ -22,8 +22,12 @@ public class Map {
     seed = newSeed;
     tile = new Character[50][50];
     row = new String[50];
-    Scanner reader = new
     if (seed == 1){
+      BufferedReader reader = new BufferedReader(new File(World1.txt)); //Reader to read the text file that contains the map.
+      int count = 0;
+      while (reader.readLine() != null) { //If there is still something to read
+        row[count] = reader.readline
+      }
     row[0] = "##################################################";
     row[1] = "#   #            #      #                        #";
     row[2] = "#                #      #                        #";
