@@ -25,6 +25,8 @@ Jason: Finalized the boundaries. Added code to test argument inputs. Changed nam
 1/13/19
 Jason & Eliza: Finalized map and print function. Created working walls as well.
 <<<<<<< HEAD
+1/16/19
+Jason: Experimented with BufferedReader in order to find a way to read maps in text files.
 
 
 
