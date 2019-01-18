@@ -8,8 +8,5 @@ public abstract class Creature {
     this.health = hp;
   }
 
-  public getHP(){
-
-  }
-
+  public abstract int getHP();
 }

@@ -3,8 +3,4 @@ public class Player extends Creature{
     super(X, Y, hp);
   }
 
-  public getHP(){
-    return hp;
-  }
-
 }

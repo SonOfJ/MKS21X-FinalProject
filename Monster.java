@@ -3,8 +3,8 @@ public class Monster extends Creature{
     super(X, Y, hp);
   }
 
-  public getHP(){
-    return hp;
+  public int getHP(){
+    return health;
   }
-
+  
 }
