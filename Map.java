@@ -21,16 +21,14 @@ public class Map {
     seed = newSeed;
     tile = new Character[50][50];
     row = new String[50];
-    if (seed == 1) {
-      BufferedReader reader = new BufferedReader(new FileReader(World1.txt)); //Reader to read the text file that contains the map.
-    }
+    Scanner reader = new Scanner("World1.txt"); //Reader to read the text file that contains the map.
     int count = 0;
-    while (reader.readLine() != null) { //If there is still something to read
-      row[count] = reader.readline;
+    while (reader.hasNext()) { //If there is still something to read
+      row[count] = reader.next();
       count = count + 1;
     }
-    for(int i = 0; i < 50; i = i + 1) {
-      for(int j = 0; j < 50; j = j + 1) {
+    for(int i = 0; i < 3; i = i + 1) {
+      for(int j = 0; j < 6; j = j + 1) {
         tile[i][j] = row[i].charAt(j);
       }
     }

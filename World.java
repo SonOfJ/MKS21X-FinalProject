@@ -50,11 +50,9 @@ public class World {
 		boolean running = true;
 		while(running){
 			putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
-
-			for (int i=0; i < 50; i++){
-				putString(0, i, terminal, Map.getRow(i));
+			for (int i=0; i < 3; i++){
+			putString(0, i, terminal, Map.getRow(i));
 			}
-
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.YELLOW);
@@ -83,8 +81,8 @@ public class World {
 					terminal.exitPrivateMode();
 					running = false;
 				}
-				if (key.getKind() == Key.Kind.ArrowLeft && x != 0) { //Left boundaries.
-					if (Map.isWall(y,x-1) || x-1<0){
+				if (key.getKind() == Key.Kind.ArrowLeft) { //Left boundaries.
+					if (Map.isWall(y,x-1)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -94,8 +92,8 @@ public class World {
 						putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowRight && x != 49) { //Right boundaries.
-					if (Map.isWall(y,x+1) || x+1>49){
+				if (key.getKind() == Key.Kind.ArrowRight) { //Right boundaries.
+					if (Map.isWall(y,x+1)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -105,8 +103,8 @@ public class World {
 						putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowUp && y != 0) { //Upper boundaries.
-					if (Map.isWall(y-1,x) || y-1<0){
+				if (key.getKind() == Key.Kind.ArrowUp) { //Upper boundaries.
+					if (Map.isWall(y-1,x)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
@@ -116,8 +114,8 @@ public class World {
 						putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowDown && y != 49) { //Lower boundaries.
-					if (Map.isWall(y+1,x) || y+1>49){
+				if (key.getKind() == Key.Kind.ArrowDown) { //Lower boundaries.
+					if (Map.isWall(y+1,x)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
