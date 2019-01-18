@@ -68,11 +68,6 @@ public class World {
 				putString(0, 0, terminal, "GAME OVER. Press z to exit."); //Display text and directions to exit game.
 				running = false;
 			}
-			terminal.moveCursor(size.getColumns()-5,5);
-			terminal.applySGR(Terminal.SGR.ENTER_BOLD);
-			terminal.moveCursor(size.getColumns()-5,6);
-			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
-			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			if (key != null) {
 				if (key.getKind() == Key.Kind.Escape) {
 					//every if here add: 1. see if the next movement run into a wall
