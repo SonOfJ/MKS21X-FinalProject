@@ -23,7 +23,7 @@ public class Map {
     tile = new Character[50][50];
     row = new String[50];
     if (seed == 1) {
-      BufferedReader reader = new BufferedReader(new File(World1.txt)); //Reader to read the text file that contains the map.
+      BufferedReader reader = new BufferedReader(new FileReader(World1.txt)); //Reader to read the text file that contains the map.
     }
       int count = 0;
       while (reader.readLine() != null) { //If there is still something to read
