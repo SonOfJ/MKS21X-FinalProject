@@ -27,7 +27,7 @@ public class Map {
     }
       int count = 0;
       while (reader.readLine() != null) { //If there is still something to read
-        row[count] = reader.readline
+        row[count] = reader.readline;
       }
 
     for(int i = 0; i < 50; i = i + 1) {
