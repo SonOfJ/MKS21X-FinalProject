@@ -27,7 +27,8 @@ Jason & Eliza: Finalized map and print function. Created working walls as well.
 <<<<<<< HEAD
 1/16/19
 Jason: Experimented with BufferedReader in order to find a way to read maps in text files.
-
+1/17/19
+Jason: Tried to adjust blocks of code so that a map with a size that is not 50x50 can be printed. Worked on storing maps in text files in 2D arrays.
 
 
 
