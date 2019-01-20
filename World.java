@@ -11,13 +11,8 @@ import com.googlecode.lanterna.input.InputDecoder;
 import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
+import com.googlecode.lanterna.screen;
 public class World {
-	public static void putString(int r, int c,Terminal t, String s){
-		t.moveCursor(r,c);
-		for(int i = 0; i < s.length();i++){
-			t.putCharacter(s.charAt(i));
-		}
-	}
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
 			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
