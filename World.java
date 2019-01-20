@@ -32,18 +32,20 @@ public class World {
 			System.exit(0);
 		}
 		Map Map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
-
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
+		Screen s = new Screen(terminal);
+		/*
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
-
+		*/
 		boolean living = true; //Alive at the start of the game.
 		int x = 1;
 		int y = 1;
 
 		boolean running = true;
 		while(running){
+			s.startScreen();
 			putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 			for (int i=0; i < 3; i++){
 			putString(0, i, terminal, Map.getRow(i));
@@ -116,6 +118,7 @@ public class World {
 					}
 				}
 			}
+			s.refresh();
 		}
 	}
 }
