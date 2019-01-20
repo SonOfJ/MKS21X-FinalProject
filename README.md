@@ -31,6 +31,8 @@ Jason: Experimented with BufferedReader in order to find a way to read maps in t
 Jason: Tried to adjust blocks of code so that a map with a size that is not 50x50 can be printed. Worked on storing maps in text files in 2D arrays.
 1/18/19
 Jason: Finally made it so that maps can be stored in text files and read with a scanner.
+1/19/19
+Jason: Looked into and experiment with screen to stop terminal flickering.
 
 
 
