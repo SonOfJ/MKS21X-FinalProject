@@ -1,10 +1,6 @@
 public class Monster extends Creature{
-  public Monster(int X, int Y, int hp){
-    super(X, Y, hp);
+  public Monster(int X, int Y, int hp, int ATK){
+    super(X, Y, hp, ATK);
   }
 
-  public int getHP(){
-    return health;
-  }
-  
 }
