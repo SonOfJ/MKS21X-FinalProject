@@ -41,10 +41,20 @@ public class World {
 		boolean living = true; //Alive at the start of the game.
 		int x = 1;
 		int y = 1;
-
 		boolean running = true;
 		while(running){
-			s.putString(0, 0, map.print(), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Prints the map. (the map need to be constantly printed or will be replaced)
+			terminal.moveCursor(0,31);
+			for (int i = 0; i < map.print().length(); i++){
+				terminal.putCharacter(map.print().charAt(i)); //Prints the map. (the map need to be constantly printed or will be replaced)
+			}
+			for (int j = 0; j<30; j++){
+				for (int i = 0; i<60; i++){
+					if (map.isWall(j, i)){
+						terminal.moveCursor(i,j);
+						terminal.putCharacter('#');
+					}
+				}
+			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.YELLOW);
