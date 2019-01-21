@@ -1,3 +1,4 @@
+package com.googlecode.lanterna.screen;
 import com.googlecode.lanterna.terminal.Terminal.SGR;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.input.Key;
@@ -11,7 +12,6 @@ import com.googlecode.lanterna.input.InputDecoder;
 import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
-import com.googlecode.lanterna.screen;
 public class World {
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
@@ -31,7 +31,7 @@ public class World {
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
-		Map Map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
+		Map map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		Screen s = new Screen(terminal);
 		s.startScreen();
@@ -46,7 +46,7 @@ public class World {
 		while(running){
 			//putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
 			for (int i=0; i < 35; i++){
-			s.putString(0, 1, Map.getRow(i), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
+			s.putString(0, 1, map.getRow(i), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
 			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
@@ -78,7 +78,7 @@ public class World {
 					}
 					else{
 					*/
-					if (!Map.isWall(y, x - 1)) {
+					if (!map.isWall(y, x - 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x--;
@@ -92,7 +92,7 @@ public class World {
 					}
 					else{
 					*/
-					if (!Map.isWall(y, x + 1)) {
+					if (!map.isWall(y, x + 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x++;
@@ -106,7 +106,7 @@ public class World {
 					}
 					else{
 					*/
-					if (!Map.isWall(y - 1, x)) {
+					if (!map.isWall(y - 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y--;
@@ -120,7 +120,7 @@ public class World {
 					}
 					else{
 					*/
-					if (!Map.isWall(y + 1, x)) {
+					if (!map.isWall(y + 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y++;
