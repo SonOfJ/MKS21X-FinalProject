@@ -60,7 +60,7 @@ public class World {
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 			if (!living) { //The player is dead
-				putString(0, 0, terminal, "GAME OVER. Press esc to exit."); //Display text and directions to exit game.
+				s.putString(0, 0, "GAME OVER. Press esc to exit.", Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Display text and directions to exit game.
 				running = false;
 			}
 			if (key != null) {
@@ -68,7 +68,7 @@ public class World {
 					//every if here add: 1. see if the next movement run into a wall
 					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
 					//3. if it is wall, putString at (0,1) about "invalid action"
-					screen.stopScreen();
+					s.stopScreen();
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft) { //Left boundaries.
