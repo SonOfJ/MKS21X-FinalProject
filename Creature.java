@@ -29,6 +29,10 @@ abstract class Creature {
     y = Y;
   }
 
+  public void setHP(int hp){
+    health = hp;
+  }
+
   public int attack(){
     return atk;
   }
