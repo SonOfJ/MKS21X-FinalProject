@@ -1,4 +1,4 @@
-package com.googlecode.lanterna.screen;
+import com.googlecode.lanterna.screen.*;
 import com.googlecode.lanterna.terminal.Terminal.SGR;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.input.Key;
@@ -35,7 +35,7 @@ public class World {
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		Screen s = new Screen(terminal);
 		s.startScreen();
-		//terminal.enterPrivateMode();
+		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
 		boolean living = true; //Alive at the start of the game.
@@ -44,14 +44,10 @@ public class World {
 
 		boolean running = true;
 		while(running){
-			//putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
-			for (int i=0; i < 35; i++){
-			s.putString(0, 1, map.getRow(i), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
-			}
+			s.putString(0, 0, map.print(), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Prints the map. (the map need to be constantly printed or will be replaced)
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.YELLOW);
-			terminal.applyBackgroundColor(Terminal.Color.BLACK);
 			//applySGR(a,b) for multiple modifiers (bold,blink) etc.
 			terminal.applySGR(Terminal.SGR.ENTER_UNDERLINE);
 			terminal.putCharacter('\u00a4');
@@ -128,7 +124,6 @@ public class World {
 					}
 				}
 			}
-			s.refresh();
 		}
 	}
 }

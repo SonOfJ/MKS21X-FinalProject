@@ -21,8 +21,8 @@ public class Map {
   private String row[];
   public Map(int newSeed) {
     seed = newSeed;
-    tile = new Character[3][6];
-    row = new String[3];
+    tile = new Character[30][60];
+    row = new String[30];
     try {
       Scanner reader = new Scanner(new File("World1.txt")); //Reader to read the text file that contains the map.
       int count = 0;
@@ -33,8 +33,8 @@ public class Map {
     } catch (FileNotFoundException e) {
       System.exit(1);
     }
-    for(int i = 0; i < 3; i = i + 1) {
-      for(int j = 0; j < 6; j = j + 1) {
+    for(int i = 0; i < 30; i = i + 1) {
+      for(int j = 0; j < 60; j = j + 1) {
         tile[i][j] = row[i].charAt(j);
       }
     }
