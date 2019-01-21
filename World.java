@@ -35,11 +35,9 @@ public class World {
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		Screen s = new Screen(terminal);
 		s.startScreen();
-		/*
-		terminal.enterPrivateMode();
+		//terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
-		*/
 		boolean living = true; //Alive at the start of the game.
 		int x = 1;
 		int y = 1;
@@ -47,9 +45,8 @@ public class World {
 		boolean running = true;
 		while(running){
 			//putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
-			s.putString(0, 0, Map.print(), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
 			for (int i=0; i < 35; i++){
-			s.putString(0, i, terminal, Map.getRow(i));
+			s.putString(0, 1, Map.getRow(i), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
 			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
@@ -63,7 +60,7 @@ public class World {
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 			if (!living) { //The player is dead
-				putString(0, 0, terminal, "GAME OVER. Press z to exit."); //Display text and directions to exit game.
+				putString(0, 0, terminal, "GAME OVER. Press esc to exit."); //Display text and directions to exit game.
 				running = false;
 			}
 			if (key != null) {
@@ -71,51 +68,63 @@ public class World {
 					//every if here add: 1. see if the next movement run into a wall
 					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
 					//3. if it is wall, putString at (0,1) about "invalid action"
-					terminal.exitPrivateMode();
+					screen.stopScreen();
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft) { //Left boundaries.
+					/*
 					if (Map.isWall(y,x-1)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
+					*/
+					if (!Map.isWall(y, x - 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x--;
-						putString(0, 53, terminal, key + " ");
+						//putString(0, 53, terminal, key + " ");
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowRight) { //Right boundaries.
+					/*
 					if (Map.isWall(y,x+1)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
+					*/
+					if (!Map.isWall(y, x + 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x++;
-						putString(0, 53, terminal, key + " ");
+						//putString(0, 53, terminal, key + " ");
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowUp) { //Upper boundaries.
+					/*
 					if (Map.isWall(y-1,x)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
+					*/
+					if (!Map.isWall(y - 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y--;
-						putString(0, 53, terminal, key + " ");
+						//putString(0, 53, terminal, key + " ");
 					}
 				}
 				if (key.getKind() == Key.Kind.ArrowDown) { //Lower boundaries.
+					/*
 					if (Map.isWall(y+1,x)){
 						putString(0, 53, terminal, "Invalid Action");
 					}
 					else{
+					*/
+					if (!Map.isWall(y + 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y++;
-						putString(0, 53, terminal, key + " ");
+						//putString(0, 53, terminal, key + " ");
 					}
 				}
 			}
