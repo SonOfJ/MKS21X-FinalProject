@@ -34,6 +34,7 @@ public class World {
 		Map Map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
 		Screen s = new Screen(terminal);
+		s.startScreen();
 		/*
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
@@ -45,10 +46,10 @@ public class World {
 
 		boolean running = true;
 		while(running){
-			s.startScreen();
-			putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
-			for (int i=0; i < 3; i++){
-			putString(0, i, terminal, Map.getRow(i));
+			//putString(0, 51, terminal, Map.print()); //Prints the map. (the map need to be constantly printed or will be replaced)
+			s.putString(0, 0, Map.print(), Terminal.Color.DEFAULT, Terminal.Color.DEFAULT);
+			for (int i=0; i < 35; i++){
+			s.putString(0, i, terminal, Map.getRow(i));
 			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
