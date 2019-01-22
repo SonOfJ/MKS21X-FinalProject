@@ -21,11 +21,11 @@ public class Map {
   private String row[];
   public Map(int newSeed) {
     seed = newSeed;
-    tile = new Character[30][60];
-    row = new String[30];
+    tile = new Character[31][60];
+    row = new String[31];
     try {
       Scanner reader = new Scanner(new File("World1.txt")); //Reader to read the text file that contains the map.
-      int count = 0;
+      int count = 1;
       while (reader.hasNext()) { //If there is still something to read
         row[count] = reader.nextLine();
         count = count + 1;
@@ -33,7 +33,7 @@ public class Map {
     } catch (FileNotFoundException e) {
       System.exit(1);
     }
-    for(int i = 0; i < 30; i = i + 1) {
+    for(int i = 1; i < 31; i = i + 1) {
       for(int j = 0; j < 60; j = j + 1) {
         tile[i][j] = row[i].charAt(j);
       }
@@ -50,6 +50,6 @@ public class Map {
   }
   public boolean isWall(int y, int x){
     //check is tile is a isWall
-    return tile[y][x] != ' ';
+    return tile[y][x] == '#';
   }
 }

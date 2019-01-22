@@ -13,6 +13,12 @@ import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 public class World {
+	public static void putString(int r, int c,Terminal t, String s){
+		t.moveCursor(r,c);
+		for(int i = 0; i < s.length();i++){
+			t.putCharacter(s.charAt(i));
+		}
+	}
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
 			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
@@ -40,14 +46,20 @@ public class World {
 		terminal.setCursorVisible(false);
 		boolean living = true; //Alive at the start of the game.
 		int x = 1;
-		int y = 1;
+		int y = 2;
 		boolean running = true;
+		Player Player = new Player(y, x, 50);
 		while(running){
-			terminal.moveCursor(0,31);
+			String playerStats = "PLAYER: " + Player.getHP() + " HP";
+			terminal.moveCursor(0, 0);
+			for (int i = 0; i < playerStats.length(); i = i + 1) {
+				terminal.putCharacter(playerStats.charAt(i));
+			}
+			terminal.moveCursor(0,32);
 			for (int i = 0; i < map.print().length(); i++){
 				terminal.putCharacter(map.print().charAt(i)); //Prints the map. (the map need to be constantly printed or will be replaced)
 			}
-			for (int j = 0; j<30; j++){
+			for (int j = 1; j<31; j++){
 				for (int i = 0; i<60; i++){
 					if (map.isWall(j, i)){
 						terminal.moveCursor(i,j);
@@ -66,7 +78,7 @@ public class World {
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 			if (!living) { //The player is dead
-				s.putString(0, 0, "GAME OVER. Press esc to exit.", Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Display text and directions to exit game.
+				//s.putString(0, 0, "GAME OVER. Press esc to exit.", Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Display text and directions to exit game.
 				running = false;
 			}
 			if (key != null) {
