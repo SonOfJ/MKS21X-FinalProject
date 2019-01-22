@@ -44,7 +44,7 @@ public class Map {
   }
   public String print() {
     if (seed == 1){
-      return "World 1 : 50x50 size";
+      return "World 1 : 30x60 size";
     }
     return "NOT OPEN. ONLY ONE MAP CURRENTLY";
   }
