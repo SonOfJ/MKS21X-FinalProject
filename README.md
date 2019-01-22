@@ -1,4 +1,5 @@
 # MKS21X-FinalProject
+Resize: Resize -s 36 60
 Compile: javac -cp lanterna.jar:. World.java
 Run: java -cp lanterna.jar:. World "Integer from 1 to 3"
 INSTRUCTIONS: Move around with the arrow keys. Step on top of a monster and read instructions. Kill all of them to win the game.
