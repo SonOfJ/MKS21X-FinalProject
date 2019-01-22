@@ -78,7 +78,9 @@ public class Map {
       }
     }
   }
-
+  public void changeTile(int y, int x) {
+    tile[y][x] = ' ';
+  }
   public boolean isMonster(int y, int x){
     //check is tile is a isWall
     return tile[y][x] == '@';

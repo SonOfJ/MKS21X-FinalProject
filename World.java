@@ -44,7 +44,6 @@ public class World {
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
-		boolean living = true; //Alive at the start of the game.
 		int x = 1;
 		int y = 2;
 		boolean running = true;
@@ -55,7 +54,7 @@ public class World {
 			for (int i = 0; i < playerStats.length(); i = i + 1) {
 				terminal.putCharacter(playerStats.charAt(i));
 			}
-			terminal.moveCursor(0,32);
+			terminal.moveCursor(0,31);
 			for (int i = 0; i < map.print().length(); i++){
 				terminal.putCharacter(map.print().charAt(i)); //Prints the map. (the map need to be constantly printed or will be replaced)
 			}
@@ -81,16 +80,58 @@ public class World {
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
-			if (!living) { //The player is dead
-				//s.putString(0, 0, "GAME OVER. Press esc to exit.", Terminal.Color.DEFAULT, Terminal.Color.DEFAULT); //Display text and directions to exit game.
-				running = false;
+			if (Player.getHP() == 0) { //The player is dead
+				s.clear();
+				String deathText = "GAME OVER. Press esc to exit.";
+				terminal.moveCursor(0, 0);
+				for( int i = 0; i < deathText.length(); i = i + 1) {
+					terminal.putCharacter(deathText.charAt(i));
+				}
+				if (key.getKind() == Key.Kind.Escape) {
+					running = false;
+				}
+			}
+			while (map.isMonster(y, x)) {
+				Monster M = new Monster(y, x, 10);
+				String monsterStats = "MONSTER: " + M.getHP() + " HP";
+				String instructions = "You have encountered a monster. Press z to attack.";
+				while (Player.isAlive() && M.isAlive()) {
+					terminal.moveCursor(0, 32);
+					for(int i = 0; i < monsterStats.length(); i = i + 1) {
+						terminal.putCharacter(monsterStats.charAt(i));
+					}
+					terminal.moveCursor(0, 33);
+					for(int i = 0; i < instructions.length(); i = i + 1) {
+						terminal.putCharacter(instructions.charAt(i));
+					}
+					Key k = terminal.readInput();
+					if (k != null) {
+						if (k.getKind() == k.Kind.ArrowUp) {
+						int playerDmg = Player.attack();
+						int monsterDmg = M.attack();
+						M.takeDmg(playerDmg);
+						Player.takeDmg(monsterDmg);
+						String text = "You dealt " + playerDmg + " damage and took " + monsterDmg + " damage.";
+						terminal.moveCursor(0, 34);
+						for(int i = 0; i < text.length(); i = i + 1) {
+							terminal.putCharacter(text.charAt(i));
+						}
+						if (!M.isAlive()) {
+							map.changeTile(y, x);
+						}
+						}
+						if (k.getKind() == k.Kind.Escape) {
+							running = false;
+							map.changeTile(y, x);
+						}
+					}
+				}
 			}
 			if (key != null) {
 				if (key.getKind() == Key.Kind.Escape) {
 					//every if here add: 1. see if the next movement run into a wall
 					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
 					//3. if it is wall, putString at (0,1) about "invalid action"
-					s.stopScreen();
 					running = false;
 				}
 				if (key.getKind() == Key.Kind.ArrowLeft) { //Left boundaries.
