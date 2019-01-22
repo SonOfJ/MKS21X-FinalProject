@@ -42,7 +42,7 @@ public class World {
 		Player Player = new Player(y, x, 50); //Player has 50 HP.
 		int monsterNum = 5; //5 monsters per map.
 		while(running){
-			String playerStats = "PLAYER: " + Player.getHP() + " HP"; //Display player HP.
+			String playerStats = "PLAYER: " + Player.getHP() + " HP"; //Display player HP
 			terminal.moveCursor(0, 0);
 			for (int i = 0; i < playerStats.length(); i = i + 1) {
 				terminal.putCharacter(playerStats.charAt(i));
@@ -55,35 +55,37 @@ public class World {
 				for (int i = 0; i<60; i++){
 					if (map.isWall(j, i)){
 						terminal.moveCursor(i,j);
-						terminal.putCharacter('#'); //Make walls.
+						terminal.putCharacter('#');
 					}
 					if (map.isMonster(j, i)){
 						terminal.moveCursor(i,j);
-						terminal.putCharacter('@'); //Make monsters.
+						terminal.putCharacter('@');
 					}
 				}
 			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.YELLOW);
+			//applySGR(a,b) for multiple modifiers (bold,blink) etc.
 			terminal.applySGR(Terminal.SGR.ENTER_UNDERLINE);
 			terminal.putCharacter('\u00a4');
+			//terminal.putCharacter(' ');
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 
-			while (map.isMonster(y, x)) { //Step on monster to enter combat.
+			while (map.isMonster(y, x)) { //Step on top of monster to engage in combat.
 				Monster M = new Monster(y, x, 10); //Monster has 10 HP.
-				String monsterStats = "MONSTER: " + M.getHP() + " HP"; //Print monster HP.
+				String monsterStats = "MONSTER: " + M.getHP() + " HP";
 				String instructions = "You have encountered a monster. Press z to attack.";
 				while (Player.isAlive() && M.isAlive()) {
 					terminal.moveCursor(0, 32);
 					for(int i = 0; i < monsterStats.length(); i = i + 1) {
-						terminal.putCharacter(monsterStats.charAt(i));
+						terminal.putCharacter(monsterStats.charAt(i)); //Print monster HP.
 					}
 					terminal.moveCursor(0, 33);
 					for(int i = 0; i < instructions.length(); i = i + 1) {
-						terminal.putCharacter(instructions.charAt(i));
+						terminal.putCharacter(instructions.charAt(i)); //Print instructions.
 					}
 					Key k = terminal.readInput();
 					if (k != null) {
@@ -97,19 +99,26 @@ public class World {
 						for(int i = 0; i < text.length(); i = i + 1) {
 							terminal.putCharacter(text.charAt(i));
 						}
-						String textMhp = "Monster's HP: " + M.getHP(); //Display monster health.
+
+						String textPhp = "Your current HP: " + Player.getHP(); //Print player health.
+						terminal.moveCursor(0, 35);
+						for(int i = 0; i < textPhp.length(); i = i + 1) {
+							terminal.putCharacter(textPhp.charAt(i));
+						}
+
+						String textMhp = "Monster's HP: " + M.getHP() + "."; //Print monster health.
 						terminal.moveCursor(0, 36);
 						for(int i = 0; i < textMhp.length(); i = i + 1) {
 							terminal.putCharacter(textMhp.charAt(i));
 						}
 
-						if (!M.isAlive()) { //if monster died
+						if (!M.isAlive()) { //If monster died.
 							map.changeTile(y, x);
 							monsterNum -= 1;
 						}
 
-						if (!Player.isAlive()) { //The player is dead
-							map.changeTile(y, x); //to leave the while(isMonster) loop
+						if (!Player.isAlive()) { //The player is dead.
+							map.changeTile(y, x); //To leave the while(isMonster) loop.
 						}
 
 						}
@@ -157,7 +166,7 @@ public class World {
 				}
 			}
 
-			if (!Player.isAlive()) { //The player is dead
+			if (!Player.isAlive()) { //The player is dead.
 				running = false;
 				terminal.exitPrivateMode();
 				System.out.println("");
@@ -165,7 +174,7 @@ public class World {
 				System.out.println("YOU DIED.");
 			}
 
-			if (monsterNum == 0){ //if all monsters died
+			if (monsterNum == 0){ //If all monsters died.
 				running = false;
 				terminal.exitPrivateMode();
 				System.out.println("");
