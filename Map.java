@@ -52,11 +52,8 @@ public class Map {
     }
     if (seed == 2){
       return "World 2";
-    }
-    if (seed == 3){
-      return "World 3";
     } else {
-      return "Invalid World Number.";
+      return "World 3";
     }
   }
 
