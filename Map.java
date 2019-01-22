@@ -19,6 +19,7 @@ public class Map {
   private int seed;
   private Character tile[][];
   private String row[];
+  private Random randgen;
   public Map(int newSeed) {
     seed = newSeed;
     tile = new Character[31][60];
@@ -47,9 +48,16 @@ public class Map {
 
   public String print() {
     if (seed == 1){
-      return "World 1 : 30x60 size";
+      return "World 1";
     }
-    return "NOT OPEN. ONLY ONE MAP CURRENTLY";
+    if (seed == 2){
+      return "World 2";
+    }
+    if (seed == 3){
+      return "World 3";
+    } else {
+      return "Invalid World Number.";
+    }
   }
 
   public boolean isWall(int y, int x){
@@ -60,11 +68,11 @@ public class Map {
   public void createMonster(){
     for (int i = 0; i < 5; i++){
       boolean isCreated = false;
-      if (isCreated == false){
-        int randomX = (int)(Math.random() * 30);
-        int randomY = (int)(Math.random() * 60);
-        if (tile[randomX][randomY] == ' ' && (randomX != 2 && randomY != 1)){
-          tile[randomX][randomY] = '@';
+      while (isCreated == false){
+        int y = randgen.nextInt(28) + 2;
+        int x = randgen.nextInt(58) + 1;
+        if (tile[y][x] == ' ' && (y != 2 && x != 1)){
+          tile[y][x] = '@';
           isCreated = true;
         }
       }
