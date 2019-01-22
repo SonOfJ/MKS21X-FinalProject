@@ -1,4 +1,7 @@
+import java.util.*;
+import java.io.*;
 public class Player{
+  private Random randgen;
   private int x,y;
   private int health, atk;
   public Player(int X, int Y, int hp){
@@ -31,7 +34,7 @@ public class Player{
   }
 
   public int attack(){
-    return atk;
+    return randgen.nextInt(11);
   }
 
   public boolean isAlive(){

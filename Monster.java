@@ -1,4 +1,7 @@
+import java.util.*;
+import java.io.*;
 public class Monster{
+  private Random randgen;
     private int x,y;
     private int health, atk;
     public Monster(int X, int Y, int hp){
@@ -32,7 +35,7 @@ public class Monster{
     }
 
     public int attack(){
-      return atk;
+      return randgen.nextInt(6);
     }
 
     public boolean isAlive(){
