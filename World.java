@@ -13,12 +13,6 @@ import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 public class World {
-	public static void putString(int r, int c,Terminal t, String s){
-		t.moveCursor(r,c);
-		for(int i = 0; i < s.length();i++){
-			t.putCharacter(s.charAt(i));
-		}
-	}
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
 			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 3");
@@ -39,18 +33,16 @@ public class World {
 		}
 		Map map = new Map(Integer.parseInt(args[0])); //Finds the appropriate map.
 		Terminal terminal = TerminalFacade.createTextTerminal(); //open a terminal window
-		Screen s = new Screen(terminal);
-		s.startScreen();
 		terminal.enterPrivateMode();
 		TerminalSize size = terminal.getTerminalSize();
 		terminal.setCursorVisible(false);
 		int x = 1;
 		int y = 2;
 		boolean running = true;
-		Player Player = new Player(y, x, 50);
-		int monsterNum = 5;
+		Player Player = new Player(y, x, 50); //Player has 50 HP.
+		int monsterNum = 5; //5 monsters per map.
 		while(running){
-			String playerStats = "PLAYER: " + Player.getHP() + " HP";
+			String playerStats = "PLAYER: " + Player.getHP() + " HP"; //Display player HP.
 			terminal.moveCursor(0, 0);
 			for (int i = 0; i < playerStats.length(); i = i + 1) {
 				terminal.putCharacter(playerStats.charAt(i));
@@ -63,28 +55,26 @@ public class World {
 				for (int i = 0; i<60; i++){
 					if (map.isWall(j, i)){
 						terminal.moveCursor(i,j);
-						terminal.putCharacter('#');
+						terminal.putCharacter('#'); //Make walls.
 					}
 					if (map.isMonster(j, i)){
 						terminal.moveCursor(i,j);
-						terminal.putCharacter('@');
+						terminal.putCharacter('@'); //Make monsters.
 					}
 				}
 			}
 			Key key = terminal.readInput();
 			terminal.moveCursor(x,y);
 			terminal.applyForegroundColor(Terminal.Color.YELLOW);
-			//applySGR(a,b) for multiple modifiers (bold,blink) etc.
 			terminal.applySGR(Terminal.SGR.ENTER_UNDERLINE);
 			terminal.putCharacter('\u00a4');
-			//terminal.putCharacter(' ');
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
 
-			while (map.isMonster(y, x)) {
-				Monster M = new Monster(y, x, 10);
-				String monsterStats = "MONSTER: " + M.getHP() + " HP";
+			while (map.isMonster(y, x)) { //Step on monster to enter combat.
+				Monster M = new Monster(y, x, 10); //Monster has 10 HP.
+				String monsterStats = "MONSTER: " + M.getHP() + " HP"; //Print monster HP.
 				String instructions = "You have encountered a monster. Press z to attack.";
 				while (Player.isAlive() && M.isAlive()) {
 					terminal.moveCursor(0, 32);
@@ -102,19 +92,12 @@ public class World {
 						int monsterDmg = M.attack();
 						M.takeDmg(playerDmg);
 						Player.takeDmg(monsterDmg);
-						String text = "You dealt " + playerDmg + " damage and took " + monsterDmg + " damage.";
+						String text = "You dealt " + playerDmg + " damage and took " + monsterDmg + " damage."; //Print battle progress.
 						terminal.moveCursor(0, 34);
 						for(int i = 0; i < text.length(); i = i + 1) {
 							terminal.putCharacter(text.charAt(i));
 						}
-
-						String textPhp = "Your current HP: " + Player.getHP() + ".";
-						terminal.moveCursor(0, 35);
-						for(int i = 0; i < textPhp.length(); i = i + 1) {
-							terminal.putCharacter(textPhp.charAt(i));
-						}
-
-						String textMhp = "Monster's HP: " + M.getHP() + "."; //display monster health
+						String textMhp = "Monster's HP: " + M.getHP(); //Display monster health.
 						terminal.moveCursor(0, 36);
 						for(int i = 0; i < textMhp.length(); i = i + 1) {
 							terminal.putCharacter(textMhp.charAt(i));
@@ -142,65 +125,34 @@ public class World {
 			if (key != null) {
 				if (key.getKind() == Key.Kind.Escape) {
 					terminal.exitPrivateMode();
-					//every if here add: 1. see if the next movement run into a wall
-					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
-					//3. if it is wall, putString at (0,1) about "invalid action"
 					running = false;
 				}
-				if (key.getKind() == Key.Kind.ArrowLeft) { //Left boundaries.
-					/*
-					if (Map.isWall(y,x-1)){
-						putString(0, 53, terminal, "Invalid Action");
-					}
-					else{
-					*/
+				if (key.getKind() == Key.Kind.ArrowLeft) {
 					if (!map.isWall(y, x - 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x--;
-						//putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowRight) { //Right boundaries.
-					/*
-					if (Map.isWall(y,x+1)){
-						putString(0, 53, terminal, "Invalid Action");
-					}
-					else{
-					*/
+				if (key.getKind() == Key.Kind.ArrowRight) {
 					if (!map.isWall(y, x + 1)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						x++;
-						//putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowUp) { //Upper boundaries.
-					/*
-					if (Map.isWall(y-1,x)){
-						putString(0, 53, terminal, "Invalid Action");
-					}
-					else{
-					*/
+				if (key.getKind() == Key.Kind.ArrowUp) {
 					if (!map.isWall(y - 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y--;
-						//putString(0, 53, terminal, key + " ");
 					}
 				}
-				if (key.getKind() == Key.Kind.ArrowDown) { //Lower boundaries.
-					/*
-					if (Map.isWall(y+1,x)){
-						putString(0, 53, terminal, "Invalid Action");
-					}
-					else{
-					*/
+				if (key.getKind() == Key.Kind.ArrowDown) {
 					if (!map.isWall(y + 1, x)) {
 						terminal.moveCursor(x,y);
 						terminal.putCharacter(' ');
 						y++;
-						//putString(0, 53, terminal, key + " ");
 					}
 				}
 			}
