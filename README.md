@@ -1,9 +1,9 @@
 # MKS21X-FinalProject
-INSTRUCTIONS: Move around with the arrow keys.
 Compile: javac -cp lanterna.jar:. World.java
-Run: java -cp lanterna.jar:. World (World #)
-NOTE: The only available world at the moment is World 1.
+Run: java -cp lanterna.jar:. World "Integer from 1 to 3"
+INSTRUCTIONS: Move around with the arrow keys. Step on top of a monster and read instructions. Kill all of them to win the game.
 
+Devlog
 1/4/19
 Jason: Had to experiment with PuTTY because GitBASH for window does not support special characters. Downloaded PuTTY and learned how to SSH to the school server. Uploaded lanterna.jar and TerminalDemo.java to GitHub.
 1/6/19
@@ -24,7 +24,8 @@ https://github.com/mgiaramita/Lantern-Adventures
 Jason: Finalized the boundaries. Added code to test argument inputs. Changed names of some of the classes, finished up with launcher class, and started work on maps.
 1/13/19
 Jason & Eliza: Finalized map and print function. Created working walls as well.
-<<<<<<< HEAD
+1/14/19
+Jason & Eliza: Enlightened by Mr. K regarding the arts of resizing the terminal and adjusting map size. Received recommendation to move maps into text files.
 1/16/19
 Jason: Experimented with BufferedReader in order to find a way to read maps in text files.
 1/17/19
@@ -33,17 +34,5 @@ Jason: Tried to adjust blocks of code so that a map with a size that is not 50x5
 Jason: Finally made it so that maps can be stored in text files and read with a scanner.
 1/19/19
 Jason: Looked into and experiment with screen to stop terminal flickering.
-
-
-
-
-
-THOUGHTS:
-1. create map files to read from
-2. remind user to change terminal size
-3. create monster on tile
-4. battle screen change
-=======
-1/14/19
-Jason & Eliza: Enlightened by Mr. K regarding the arts of resizing the terminal and adjusting map size. Received recommendation to move maps into text files.
->>>>>>> 3b3b683e3be766be60f1aa853783aad0ce228e45
+1/21/19
+Jason & Eliza: Added random monster spawning and combat system. Produced three maps.
