@@ -38,18 +38,42 @@ public class Map {
         tile[i][j] = row[i].charAt(j);
       }
     }
+    createMonster();
   }
+
   public String getRow(int rowNum) {
     return row[rowNum];
   }
+
   public String print() {
     if (seed == 1){
       return "World 1 : 30x60 size";
     }
     return "NOT OPEN. ONLY ONE MAP CURRENTLY";
   }
+
   public boolean isWall(int y, int x){
     //check is tile is a isWall
     return tile[y][x] == '#';
   }
+
+  public void createMonster(){
+    for (int i = 0; i < 5; i++){
+      boolean isCreated = false;
+      if (isCreated == false){
+        int randomX = (int)(Math.random() * 30);
+        int randomY = (int)(Math.random() * 60);
+        if (tile[randomX][randomY] == ' ' && (randomX != 2 && randomY != 1)){
+          tile[randomX][randomY] = '@';
+          isCreated = true;
+        }
+      }
+    }
+  }
+
+  public boolean isMonster(int y, int x){
+    //check is tile is a isWall
+    return tile[y][x] == '@';
+  }
+
 }

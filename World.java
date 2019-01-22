@@ -65,6 +65,10 @@ public class World {
 						terminal.moveCursor(i,j);
 						terminal.putCharacter('#');
 					}
+					if (map.isMonster(j, i)){
+						terminal.moveCursor(i,j);
+						terminal.putCharacter('@');
+					}
 				}
 			}
 			Key key = terminal.readInput();
