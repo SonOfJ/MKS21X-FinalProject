@@ -25,7 +25,7 @@ public class Map {
     tile = new Character[31][60];
     row = new String[31];
     try {
-      Scanner reader = new Scanner(new File("World1.txt")); //Reader to read the text file that contains the map.
+      Scanner reader = new Scanner(new File("World" + seed + ".txt")); //Reader to read the text file that contains the map.
       int count = 1;
       while (reader.hasNext()) { //If there is still something to read
         row[count] = reader.nextLine();

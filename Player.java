@@ -34,7 +34,7 @@ public class Player{
   }
 
   public int attack(){
-    return randgen.nextInt(11);
+    return (int)(Math.random() * 10);
   }
 
   public boolean isAlive(){

@@ -21,19 +21,19 @@ public class World {
 	}
 	public static void main(String[] args) {
 		if (args.length != 1) { //Only one argument is needed.
-			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
+			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 3");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
 		try {
 			Integer.parseInt(args[0]); //Is the input an integer?
 		} catch (NumberFormatException e) {
-			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 1");
+			System.out.println("Provide only an appropriate map number to generate a map. Current # of map: 3");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
-		if (Integer.parseInt(args[0]) != 1) { //Correct map number?
-			System.out.println("Invalid map number. Current # of map: 1");
+		if (Integer.parseInt(args[0]) > 3 || Integer.parseInt(args[0]) < 1) { //Correct map number?
+			System.out.println("Invalid map number. Current # of map: 3");
 			System.out.println("Map numbers: ");
 			System.exit(0);
 		}
@@ -48,6 +48,7 @@ public class World {
 		int y = 2;
 		boolean running = true;
 		Player Player = new Player(y, x, 50);
+		int monsterNum = 5;
 		while(running){
 			String playerStats = "PLAYER: " + Player.getHP() + " HP";
 			terminal.moveCursor(0, 0);
@@ -80,17 +81,7 @@ public class World {
 			terminal.applyBackgroundColor(Terminal.Color.DEFAULT);
 			terminal.applyForegroundColor(Terminal.Color.DEFAULT);
 			terminal.applySGR(Terminal.SGR.RESET_ALL);
-			if (Player.getHP() == 0) { //The player is dead
-				s.clear();
-				String deathText = "GAME OVER. Press esc to exit.";
-				terminal.moveCursor(0, 0);
-				for( int i = 0; i < deathText.length(); i = i + 1) {
-					terminal.putCharacter(deathText.charAt(i));
-				}
-				if (key.getKind() == Key.Kind.Escape) {
-					running = false;
-				}
-			}
+
 			while (map.isMonster(y, x)) {
 				Monster M = new Monster(y, x, 10);
 				String monsterStats = "MONSTER: " + M.getHP() + " HP";
@@ -106,7 +97,7 @@ public class World {
 					}
 					Key k = terminal.readInput();
 					if (k != null) {
-						if (k.getKind() == k.Kind.ArrowUp) {
+						if (k.getCharacter() == 'z') {
 						int playerDmg = Player.attack();
 						int monsterDmg = M.attack();
 						M.takeDmg(playerDmg);
@@ -116,19 +107,41 @@ public class World {
 						for(int i = 0; i < text.length(); i = i + 1) {
 							terminal.putCharacter(text.charAt(i));
 						}
-						if (!M.isAlive()) {
+
+						String textPhp = "Your current HP: " + Player.getHP() + ".";
+						terminal.moveCursor(0, 35);
+						for(int i = 0; i < textPhp.length(); i = i + 1) {
+							terminal.putCharacter(textPhp.charAt(i));
+						}
+
+						String textMhp = "Monster's HP: " + M.getHP() + "."; //display monster health
+						terminal.moveCursor(0, 36);
+						for(int i = 0; i < textMhp.length(); i = i + 1) {
+							terminal.putCharacter(textMhp.charAt(i));
+						}
+
+						if (!M.isAlive()) { //if monster died
 							map.changeTile(y, x);
+							monsterNum -= 1;
 						}
+
+						if (!Player.isAlive()) { //The player is dead
+							map.changeTile(y, x); //to leave the while(isMonster) loop
 						}
-						if (k.getKind() == k.Kind.Escape) {
+
+						}
+						if (k.getKind() == Key.Kind.Escape) {
+							terminal.exitPrivateMode();
 							running = false;
 							map.changeTile(y, x);
 						}
 					}
 				}
+				terminal.clearScreen();
 			}
 			if (key != null) {
 				if (key.getKind() == Key.Kind.Escape) {
+					terminal.exitPrivateMode();
 					//every if here add: 1. see if the next movement run into a wall
 					//2.if isWall is false, continue the action and putString (0,1) "keep going!" or so
 					//3. if it is wall, putString at (0,1) about "invalid action"
@@ -190,6 +203,22 @@ public class World {
 						//putString(0, 53, terminal, key + " ");
 					}
 				}
+			}
+
+			if (!Player.isAlive()) { //The player is dead
+				running = false;
+				terminal.exitPrivateMode();
+				System.out.println("");
+				System.out.println("");
+				System.out.println("YOU DIED.");
+			}
+
+			if (monsterNum == 0){ //if all monsters died
+				running = false;
+				terminal.exitPrivateMode();
+				System.out.println("");
+				System.out.println("");
+				System.out.println("YOU WIN!!!");
 			}
 		}
 	}

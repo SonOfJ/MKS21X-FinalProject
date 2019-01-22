@@ -35,7 +35,7 @@ public class Monster{
     }
 
     public int attack(){
-      return randgen.nextInt(6);
+      return (int)(Math.random() * 5);
     }
 
     public boolean isAlive(){
