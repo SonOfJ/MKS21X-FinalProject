@@ -62,7 +62,7 @@ public class Map {
     return tile[y][x] == '#';
   }
 
-  public void createMonster(){
+  public void createMonster(){ //Monster spawning is random.
     for (int i = 0; i < 5; i++){
       boolean isCreated = false;
       while (isCreated == false){
@@ -75,7 +75,7 @@ public class Map {
       }
     }
   }
-  public void changeTile(int y, int x) {
+  public void changeTile(int y, int x) { //Function that takes place after the death of a monster.
     tile[y][x] = ' ';
   }
   public boolean isMonster(int y, int x){
