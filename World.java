@@ -122,11 +122,6 @@ public class World {
 						}
 
 						}
-						if (k.getKind() == Key.Kind.Escape) {
-							terminal.exitPrivateMode();
-							running = false;
-							map.changeTile(y, x);
-						}
 					}
 				}
 				terminal.clearScreen();
