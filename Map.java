@@ -69,8 +69,8 @@ public class Map {
     for (int i = 0; i < 5; i++){
       boolean isCreated = false;
       while (isCreated == false){
-        int y = randgen.nextInt(28) + 2;
-        int x = randgen.nextInt(58) + 1;
+        int y = (int)(Math.random() * 29 + 1);
+        int x = (int)(Math.random() * 59);
         if (tile[y][x] == ' ' && (y != 2 && x != 1)){
           tile[y][x] = '@';
           isCreated = true;
